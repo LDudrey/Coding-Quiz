@@ -2,11 +2,11 @@ var timeEl = document.querySelector(".time");
 var highScoreEl = document.querySelector(".highscore");
 var questionEl = document.querySelector(".question");
 var paraEl = document.querySelector(".para");
-
+var answerEl = document.querySelector(".answer");
 
 var secondsLeft = 10;
 
-
+// Creates beginning page
 function renderCodeQuiz() {
     questionEl.textContent = "Coding Quiz Challenge"
     paraEl.textContent = "Try to answer the following code-related questions with in the time limit. Keep in mind that incorrect answers will penalize your score time by ten seconds!"
@@ -19,9 +19,6 @@ function renderCodeQuiz() {
 //     }
 // }
 
-
-// TODO: Use the `setInterval()` 
-// method to call a function to be executed every 1000 milliseconds
 // Timer
 function setTime() {
     // Sets interval in variable
@@ -31,17 +28,18 @@ function setTime() {
             timeEl.textContent = "Time Left: " + secondsLeft;
         } else if (secondsLeft === 0) {
             timeEl.textContent = "Time Left: " + secondsLeft;
+            questionEl.textContent = "Times Up!"
             clearInterval(timerInterval);
             displayMessage();
         }
     }, 1000);
 }
 
-// Displays times up message and results of score?
-function displayMessage() {
-    if (secondsLeft === 0)
-   questionEl.textContent = "Times Up!"
-}
+// // Displays times up message and results of score?
+// function displayMessage() {
+//     if (secondsLeft === 0)
+//    questionEl.textContent = "Times Up!"
+// }
 
 
 // Function to create and append colorsplosion image
