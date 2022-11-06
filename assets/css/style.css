@@ -9,6 +9,11 @@ body {
     color: #230953;
   }
 
+  a {
+    text-decoration: none;
+    cursor: pointer;
+  }
+
   h1 {
     text-align: center;
   }
