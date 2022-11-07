@@ -24,6 +24,7 @@ function startGame() {
 }
 
 function setNextQuestion() {
+    resetAll();
     showQuestions(quizQuestions);
 
 }
@@ -32,11 +33,16 @@ function showQuestions(question) {
     questionsEl.innerText = question.question;
 
 
-    
+    answerButtons.addEventListener('click', selectAnswer);
+    answerButtons.appendChild(button)
 }
 
 function selectAnswer() {
 
+
+}
+
+function resetAll() {
 
 }
 
@@ -55,12 +61,22 @@ var quizQuestions = [
     {
         question: "How to write an IF statement in JavaScript?",
         answers: {
-            1: "if (i == 5) ",
+            1: "if (i == 5)",
             2: "if i = 5 then",
             3: "if i = 5;",
             4: "if i == 5 then",
         },
         correctAnswer: '1'
+    },
+    {
+        question: "How does a FOR loop start?",
+        answers: {
+            1: "for i = 1 to 5",
+            2: "for (i = 0; i <= 5; i++)",
+            3: "for (i <= 5; i++)",
+            4: "for (i = 0; i <= 5)",
+        },
+        correctAnswer: '2'
     }
 ];
 
