@@ -15,11 +15,12 @@
     <div class="timer">Time Left:</div>
 
     <div id="intro" class="hidden">
-        <h1 class="welcome"></h1>
+        <h1 class="title"></h1>
         <p class="para"></p>
+        <button id="start">Start Quiz</button>
     </div>
-    <div id="questions">
-        <h2></h2>
+    <div id="quiz"></div>
+        <h2 id="questions" class="hidden"></h2>
         <ul>
             <li class="answers">multiple choice 1</li>
             <li class="answers">multiple choice 2</li>
@@ -27,10 +28,9 @@
             <li class="answers">multiple choice 4</li>
         </ul>
         <div class="check">line with correct or wrong</div>
-    </div>
-    <button class="start">Start Quiz</button>
-    <div id="results" class="hidden">
-        <button class="submit">submit score and intials</button>
+  
+    <div id="results">
+        <button id="submit" class="hidden">submit score and intials</button>
         get score and input initials
     </div>
     </div>
