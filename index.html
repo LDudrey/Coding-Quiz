@@ -9,33 +9,36 @@
 </head>
 
 <body>
-    <div class="highscores">
-        <a href="./highscore.html">View Highscores</a>
+    <div class="main">
+        <div class="navbar">
+            <div class="highscore">
+                <a href="./highscore.html">View Highscores</a>
+            </div>
+            <div class="timer">Time Left:</div>
+        </div>
+
+        <div class="container">
+            <div id="intro">
+                <div class="title"></div>
+                <p class="para"></p>
+                <button id="start">Start Quiz</button>
+            </div>
+            <div id="quiz-container">
+                <div id="questions">Questions</div>
+                <div id="answer-buttons">
+                    <button class="answers">choice 1</button>
+                    <button class="answers">choice 2</button>
+                    <button class="answers">choice 3</button>
+                    <button class="answers">choice 4</button>
+                </div>
+            </div>
+            <div id="results">
+                <button id="submit">submit score and intials</button>
+                get score and input initials
+            </div>
+        </div>
     </div>
-    <div class="timer">Time Left:</div>
-
-    <div id="intro" class="hidden">
-        <h1 class="title"></h1>
-        <p class="para"></p>
-        <button id="start">Start Quiz</button>
-    </div>
-    <div id="quiz" class="hidden"></div>
-    <h2 id="questions"></h2>
-    <ul>
-        <li class="answers">multiple choice 1</li>
-        <li class="answers">multiple choice 2</li>
-        <li class="answers">multiple choice 3</li>
-        <li class="answers">multiple choice 4</li>
-    </ul>
-    <div class="check">line with correct or wrong</div>
-
-    <div id="results" class="hidden">
-        <button id="submit">submit score and intials</button>
-        get score and input initials
-    </div>
-
-
-    <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/script1.js"></script>
 </body>
 <footer>
 

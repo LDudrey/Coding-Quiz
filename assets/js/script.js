@@ -7,7 +7,6 @@ var answerEl = document.querySelectorAll(".answers");
 var startButton = document.getElementById("start");
 var quizResult = document.querySelector(".results");
 var submitButton = document.querySelector(".submit");
-var hiddenEl = document.querySelector(".hidden");
 
 // Creates beginning page
 function renderCodeQuiz() {
@@ -20,10 +19,28 @@ function renderCodeQuiz() {
 
 //https://stackoverflow.com/questions/52976589/hide-element-when-you-click-on-it-with-addeventlistener
 function hide() {
-    if (hiddenEl.style.display === "none") {
-        hiddenEl.style.display = "block";
+    var hideIntro = document.getElementById("intro");
+    var hideSubmit = document.getElementById("submit");
+
+    if (hideIntro.style.display === "none") {
+        hideIntro.style.display = "block";
     } else {
-        hiddenEl.style.display = "none";
+        hideIntro.style.display = "none";
+    }
+    if (hideSubmit.style.display === "none") {
+        hideSubmit.style.display = "block";
+    } else {
+        hideSubmit.style.display = "none";
+    }
+};
+
+function hideQuiz() {
+    console.log("called!");
+    var hideQuiz = document.getElementById("quiz");
+    if (hideQuiz.style.display === "none") {
+        hideQuiz.style.display = "block";
+    } else {
+        hideQuiz.style.display = "none";
     }
 };
 
@@ -39,8 +56,7 @@ function countDown() {
             timeEl.textContent = "Time Left: " + secondsLeft;
             clearInterval(timeInterval);
             hide();
-            titleEl.textContent = "Times Up!"
-            paraEl.textContent = "Try to answer all the questions before the time runs out!"
+            hideQuiz();
         }
     }, 1000);
 };
@@ -48,16 +64,16 @@ function countDown() {
 // https://www.youtube.com/watch?v=RswgVWKJRLM
 function showQuestions() {
     questionsEl.textContent = quizQuestions.question;
-  answerEl.forEach(function(element, index) {
-    element.textContent = quizQuestions.answers[index];
-    element.addEventListener('click', function() {
-        if (quizQuestions.correctAnswer == index) {
-            console.log('Correct');
-        } else {
-            console.log('Wrong');
-        }
+    answerEl.forEach(function (element, index) {
+        element.textContent = quizQuestions.answers[index];
+        element.addEventListener('click', function () {
+            if (quizQuestions.correctAnswer == index) {
+                console.log('Correct');
+            } else {
+                console.log('Wrong');
+            }
+        })
     })
-  })
 };
 
 // Questions courtesy of https://www.w3schools.com/quiztest/quiztest.asp?qtest=JS
@@ -66,6 +82,7 @@ var quizQuestions = {
     answers: ["<javascript>", "<js>", "<script>", "<scripting>"],
     correctAnswer: 2
 };
+
 
 
 
