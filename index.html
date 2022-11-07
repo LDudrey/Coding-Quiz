@@ -9,32 +9,30 @@
 </head>
 
 <body>
-    <div>
-        <div class="highscore">
-            <a href ="./highscore.html">View Highscores</a>
-        </div>
-        <div class="time">Time Left:</div>
+    <div class="highscores">
+        <a href="./highscore.html">View Highscores</a>
     </div>
-    <div class="intro">
-        <h1 class="question"></h1>
+    <div class="timer">Time Left:</div>
+
+    <div id="intro" class="hidden">
+        <h1 class="welcome"></h1>
         <p class="para"></p>
-        <div>
     </div>
-        <div class="answer">
-            <ul>
-                <li class="answer" data-state="hidden">multiple choice 1</li>
-                <li class="answer" data-state="hidden">multiple choice 2</li>
-                <li class="answer" data-state="hidden">multiple choice 3</li>
-                <li class="answer" data-state="hidden">multiple choice 4</li>
-            </ul>
-        </div>
-            <div class="check">line with correct or wrong</div>
-            <button class="start">Start Quiz</button>
-        </div>
-        <div class="results">
-            <button class="submit" data-state="hidden">submit score and intials</button>
-            get score and input initials
-        </div>
+    <div id="questions">
+        <h2></h2>
+        <ul>
+            <li class="answers">multiple choice 1</li>
+            <li class="answers">multiple choice 2</li>
+            <li class="answers">multiple choice 3</li>
+            <li class="answers">multiple choice 4</li>
+        </ul>
+        <div class="check">line with correct or wrong</div>
+    </div>
+    <button class="start">Start Quiz</button>
+    <div id="results" class="hidden">
+        <button class="submit">submit score and intials</button>
+        get score and input initials
+    </div>
     </div>
 
 
