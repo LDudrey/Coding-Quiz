@@ -41,7 +41,6 @@ function countDown() {
             hide();
             titleEl.textContent = "Times Up!"
             paraEl.textContent = "Try to answer all the questions before the time runs out!"
-
         }
     }, 1000);
 };
@@ -72,7 +71,7 @@ var quizQuestions = {
 
 // Function to show end score result after all answers completed
 // function quizResult () {
-//     questionEl.textContent = "All done!"
+//     titleEl.textContent = "All done!"
 //     paraEl.textContent = "Your score is" + scoreTotal;
 // }
 
