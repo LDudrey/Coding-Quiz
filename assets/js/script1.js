@@ -5,6 +5,7 @@ var startButton = document.getElementById("start");
 var quizContainer = document.getElementById("quiz-container");
 var questionsEl = document.getElementById("questions");
 var answerButtons = document.querySelectorAll("answer-buttons");
+var currentQuestionArrayIndex = 0;
 
 
 // Creates beginning page
@@ -25,19 +26,15 @@ function startQuiz() {
     displayQuestions();
 }
 
-function displayQuestions(question) {
-    function getQuestion() {
+function displayQuestions() {
         // A variable is needed here to get the current question object from the array of questions
-      var currentQuestion = 
+      var currentQuestion = quizQuestions[currentQuestionArrayIndex]
         // update with current question
-      
-        // clear out any old question choices
-      
-        // loop over choices
-      
-        // display on the page
-        }
-      }
+      questionsEl.textContent = currentQuestion.question;
+    //   here we need to make variables that grab the answers buttons in your html
+    // next we need to add the text content from your quizQUestions array
+
+}
 
 
     // questionsEl.innerText = question.question;
