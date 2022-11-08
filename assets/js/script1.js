@@ -11,6 +11,7 @@ var answerElThree = document.getElementById("answers-3");
 var answerButtons = document.getElementById("answer-buttons");
 var answerCorrect = document.getElementById("result");
 var currentQuestionArrayIndex = 0;
+var currentQuestionAnswerArray = "";
 var numberCorrect = 0;
 
 
@@ -33,42 +34,64 @@ function startQuiz() {
 }
 
 function displayQuestions() {
-    // A variable is needed here to get the current question object from the array of questions
-    var currentQuestion = quizQuestions[currentQuestionArrayIndex]
-    for (i = 0; i < currentQuestionArrayIndex.length; index++) {
-        element = currentQuestionArrayIndex[i];
+    //A variable is needed here to get the current question object from the array of questions
+    var currentQuestion = quizQuestions[currentQuestionArrayIndex];
+    for (i = 0; i < quizQuestions.length; i++) {
+        element = currentQuestion[i];
     }
-    // update with current question
     questionsEl.textContent = currentQuestion.question;
-    // here we need to make variables that grab the answers buttons in your html
-    // next we need to add the text content from your quizQuestions array
-    var currentAnswers = quizQuestions[currentQuestionArrayIndex]
-    for (i = 0; i < currentQuestionArrayIndex.length; index++) {
-        element = currentAnswers.answers[i];
-        //var currentAnswerArray
-    }
+    console.log(currentQuestion.question)
+    console.log(currentQuestion.correctAnswer)
     answerElZero.textContent = currentQuestion.answers[0];
     answerElOne.textContent = currentQuestion.answers[1];
     answerElTwo.textContent = currentQuestion.answers[2];
     answerElThree.textContent = currentQuestion.answers[3];
-    // answerButtons.addEventListener('click', selectAnswer);
+};
+// update with current question
 
-}
+// here we need to make variables that grab the answers buttons in your html
+// next we need to add the text content from your quizQuestions array
+// var currentAnswers = quizQuestions[currentQuestionArrayIndex];
+// for (i = 0; i < currentAnswers.length; i++) {
+//     element = currentAnswers.answers[i];
+// console.log(currentAnswers)
+// };
+// //var currentAnswerArray
+// }
+// answerElZero.textContent = currentQuestion.answers[0];
+// answerElOne.textContent = currentQuestion.answers[1];
+// answerElTwo.textContent = currentQuestion.answers[2];
+// answerElThree.textContent = currentQuestion.answers[3];
+// answerButtons.addEventListener('click', selectAnswer);
+
+// }
 
 // click start quiz, get timer to countdown, can cycle through questions and answers them, 
 //quiz end with clock or quiz ends
 
-    answerButtons.addEventListener('click', function (event) {
-        console.log(event.target)
-        if (answerButtons == currentQuestionArrayIndex.correctAnswer) {  
-            numberCorrect++;
-            answerCorrect.textContent = "Correct!";
-        } else {
-            answerCorrect.textContent = "Wrong!";
-        }
+
+// answerButtons.addEventListener('click', function (event) {
+//     console.log(event.target)
+//     // Compare answer.  Only if correct, do you move onto next question -   if(answer == QUESTIONS[indexQuestion].answer)
+//     if (currentQuestionAnswerArray == quizQuestions[currentQuestionArrayIndex].answers) {
+//         answerCorrect.textContent = "Correct!"
+//         displayQuestions();
+//     }
+//     else {
+//         answerCorrect.textContent = "Wrong!";
+//     }
+// }
+// );
+answerButtons.addEventListener('click', function (event) {
+    console.log(event)
+    if (event === quizQuestions.correctAnswer) {
+        numberCorrect++;
+        answerCorrect.textContent = "Correct!";
+    } else {
+        answerCorrect.textContent = "Wrong!";
     }
-    );
-    
+}
+);
 
 // Timer
 function countDown() {
@@ -105,7 +128,7 @@ var quizQuestions = [
     {
         question: "Inside which HTML element do we put the JavaScript?",
         answers: ["<javascript>", "<js>", "<script>", "<scripting>"],
-        correctAnswer: '2'
+        correctAnswer: 2
     },
     {
         question: "How to write an IF statement in JavaScript?",
