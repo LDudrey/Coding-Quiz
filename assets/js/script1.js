@@ -13,23 +13,18 @@ function renderCodeQuiz() {
     document.getElementById("results").style.display = "none";
     titleEl.textContent = "Coding Quiz Challenge";
     paraEl.textContent = "Try to answer the following code-related questions with in the time limit. Keep in mind that incorrect answers will penalize your score time by ten seconds!";
-    startButton.addEventListener('click', startGame);
+    startButton.addEventListener('click', startQuiz);
 }
 
-function startGame() {
+function startQuiz() {
     document.getElementById("start").style.display = "none";
     document.getElementById("intro").style.display = "none";
     document.getElementById("quiz-container").style.display = "block";
-    setNextQuestion();
 }
 
-function setNextQuestion() {
-    resetAll();
-    showQuestions(quizQuestions);
 
-}
 
-function showQuestions(question) {
+function displayQuestions(question) {
     questionsEl.innerText = question.question;
 
 
@@ -42,9 +37,22 @@ function selectAnswer() {
 
 }
 
-function resetAll() {
-
-}
+// Timer
+function countDown() {
+    var secondsLeft = 10;
+    // Sets interval in variable
+    var timeInterval = setInterval(function () {
+        if (secondsLeft > 0) {
+            secondsLeft--;
+            timeEl.textContent = "Time Left: " + secondsLeft;
+        } else if (secondsLeft === 0) {
+            timeEl.textContent = "Time Left: " + secondsLeft;
+            clearInterval(timeInterval);
+            hide();
+            hideQuiz();
+        }
+    }, 1000);
+};
 
 // Questions courtesy of https://www.w3schools.com/quiztest/quiztest.asp?qtest=JS
 var quizQuestions = [
