@@ -41,7 +41,7 @@ function displayQuestions() {
     // update with current question
     questionsEl.textContent = currentQuestion.question;
     // here we need to make variables that grab the answers buttons in your html
-    // next we need to add the text content from your quizQUestions array
+    // next we need to add the text content from your quizQuestions array
     var currentAnswers = quizQuestions[currentQuestionArrayIndex]
     for (i = 0; i < currentQuestionArrayIndex.length; index++) {
         element = currentAnswers.answers[i];
@@ -51,24 +51,24 @@ function displayQuestions() {
     answerElOne.textContent = currentQuestion.answers[1];
     answerElTwo.textContent = currentQuestion.answers[2];
     answerElThree.textContent = currentQuestion.answers[3];
-    //answerButtons.addEventListener('click', selectAnswer);
+    // answerButtons.addEventListener('click', selectAnswer);
 
 }
 
 // click start quiz, get timer to countdown, can cycle through questions and answers them, 
 //quiz end with clock or quiz ends
 
-// function selectAnswer() {
-    //var userAnswer = 0;
-    answerButtons.addEventListener('click', function () {
-        if (answerButtons == currentQuestionArrayIndex.correctAnswer) {            
+    answerButtons.addEventListener('click', function (event) {
+        console.log(event.target)
+        if (answerButtons == currentQuestionArrayIndex.correctAnswer) {  
             numberCorrect++;
             answerCorrect.textContent = "Correct!";
         } else {
             answerCorrect.textContent = "Wrong!";
-            console.log(currentQuestionArrayIndex.correctAnswer);
         }
-    });
+    }
+    );
+    
 
 // Timer
 function countDown() {
@@ -105,7 +105,7 @@ var quizQuestions = [
     {
         question: "Inside which HTML element do we put the JavaScript?",
         answers: ["<javascript>", "<js>", "<script>", "<scripting>"],
-        correctAnswer: 2
+        correctAnswer: '2'
     },
     {
         question: "How to write an IF statement in JavaScript?",
