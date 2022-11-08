@@ -26,12 +26,24 @@ function startQuiz() {
 }
 
 function displayQuestions(question) {
-    questionsEl.innerText = question.question;
+    function getQuestion() {
+        // A variable is needed here to get the current question object from the array of questions
+      var currentQuestion = 
+        // update with current question
+      
+        // clear out any old question choices
+      
+        // loop over choices
+      
+        // display on the page
+        }
+      }
 
 
-    answerButtons.addEventListener('click', selectAnswer);
-    answerButtons.appendChild(button)
-}
+    // questionsEl.innerText = question.question;
+    // answerButtons.addEventListener('click', selectAnswer);
+// click start quiz, get timer to countdown, can cycle through questions and answers them, 
+//quiz end with clock or quiz ends
 
 function selectAnswer() {
 
@@ -41,7 +53,6 @@ function selectAnswer() {
 // Timer
 function countDown() {
     var secondsLeft = 11;
-    // Sets interval in variable
     var timeInterval = setInterval(function () {
         if (secondsLeft > 0) {
             secondsLeft--;
@@ -49,9 +60,17 @@ function countDown() {
         } else if (secondsLeft === 0) {
             timeEl.textContent = "Time Left: " + secondsLeft;
             clearInterval(timeInterval);
+        //if (secondsLeft === 0 ||  )
+// enter a conditional that ends the quiz either when clock his 0 OR you cycle though all questions.
+// this conditional would involve finding the users index position and compare to length of the array
+ // How to end the quiz for EITHER no time left OR no questions left
+//  if (time <= 0 || create a variable to see the which current index of the array of questions you are on === questions.length) {
+//     question ending function here;
+//   }
         }
     }, 1000);
 };
+
 
 // Questions courtesy of https://www.w3schools.com/quiztest/quiztest.asp?qtest=JS
 var quizQuestions = [
