@@ -19,7 +19,7 @@ var numberCorrect = 0;
 
 // Creates beginning page
 //https://stackoverflow.com/questions/6242976/javascript-hide-show-element
-function renderCodeQuiz() {
+function renderIntro() {
     document.getElementById("quiz-container").style.display = "none";
     document.getElementById("score").style.display = "none";
     titleEl.textContent = "Coding Quiz Challenge";
@@ -51,7 +51,7 @@ function countDown() {
             paraEl.textContent = "Try to answer the questions in the time limit.";
             clearInterval(timeInterval);
         } else {
-            (currentQuestionArrayIndex === 2);
+            (currentQuestionArrayIndex === 3);
             document.getElementById("start").style.display = "block";
             document.getElementById("quiz-container").style.display = "none";
             titleEl.textContent = "All done!";
@@ -72,27 +72,18 @@ function countDown() {
 function displayQuestions() {
     //A variable is needed here to get the current question object from the array of questions
     var currentQuestion = quizQuestions[currentQuestionArrayIndex];
-    for (i = 0; i < quizQuestions.length; i++) {
-        element = currentQuestion[i];
-    }
-    // next we need to add the text content from your quizQuestions array
+    for (i = 0; i < quizQuestions.length; i++) { 
     questionsEl.textContent = currentQuestion.question;
     // console.log(currentQuestion.question)
-    // console.log(currentQuestion.correctAnswer)
-    // here we need to make variables that grab the answers buttons in your html
-    // var currentAnswers = quizQuestions[currentQuestionArrayIndex];
-// for (i = 0; i < currentAnswers.length; i++) {
-//     element = currentAnswers.answers[i];
-// };
-
-    //var currentAnswerArray
     answerElZero.textContent = currentQuestion.answers[0];
     answerElOne.textContent = currentQuestion.answers[1];
     answerElTwo.textContent = currentQuestion.answers[2];
     answerElThree.textContent = currentQuestion.answers[3];
+}
 };
 
 // Asistance in solution from AskBCS and TA
+// Found syntax for advancing questions: https://stackoverflow.com/questions/43502831/displaying-one-quiz-item-at-a-time
 answerButtons.addEventListener('click', event => {
     event.preventDefault();
     // Compare answer.  Only if correct, do you move onto next question 
@@ -100,13 +91,13 @@ answerButtons.addEventListener('click', event => {
         numberCorrect++;
         answerCorrect.textContent = "Correct!";
         localStorage.setItem("score", numberCorrect);
-        startQuiz();
+        ++currentQuestionArrayIndex;
+        displayQuestions();
     } else {
         answerCorrect.textContent = "Wrong!";
+        ++currentQuestionArrayIndex;
         displayQuestions();
     }
-    
-    console.log(numberCorrect)
 }
 );
 
@@ -126,7 +117,7 @@ function countDown() {
             paraEl.textContent = "Try to answer the questions in the time limit.";
             clearInterval(timeInterval);
         } else {
-            (currentQuestionArrayIndex === 2);
+            (currentQuestionArrayIndex > 2);
             document.getElementById("start").style.display = "block";
             document.getElementById("quiz-container").style.display = "none";
             titleEl.textContent = "All done!";
@@ -163,6 +154,6 @@ var quizQuestions = [
 
 // The init() function fires when the page is loaded 
 function init() {
-    renderCodeQuiz();
+    renderIntro();
 }
 init();
