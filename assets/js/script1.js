@@ -4,7 +4,11 @@ var paraEl = document.querySelector(".para");
 var startButton = document.getElementById("start");
 var quizContainer = document.getElementById("quiz-container");
 var questionsEl = document.getElementById("questions");
-var answerButtons = document.querySelectorAll("answer-buttons");
+var answerElZero = document.getElementById("answers-0");
+var answerElOne = document.getElementById("answers-1");
+var answerElTwo = document.getElementById("answers-2");
+var answerElThree = document.getElementById("answers-3");
+var answerButtons = document.getElementById("answer-buttons");
 var currentQuestionArrayIndex = 0;
 
 
@@ -27,18 +31,19 @@ function startQuiz() {
 }
 
 function displayQuestions() {
-        // A variable is needed here to get the current question object from the array of questions
-      var currentQuestion = quizQuestions[currentQuestionArrayIndex]
-        // update with current question
-      questionsEl.textContent = currentQuestion.question;
+    // A variable is needed here to get the current question object from the array of questions
+    var currentQuestion = quizQuestions[currentQuestionArrayIndex]
+    // update with current question
+    questionsEl.textContent = currentQuestion.question;
     //   here we need to make variables that grab the answers buttons in your html
     // next we need to add the text content from your quizQUestions array
-
+    answerElZero.textContent = currentQuestion.answers[0];
+    answerElOne.textContent = currentQuestion.answers[1];
+    answerElTwo.textContent = currentQuestion.answers[2];
+    answerElThree.textContent = currentQuestion.answers[3];
+    //answerButtons.addEventListener('click', selectAnswer);
 }
 
-
-    // questionsEl.innerText = question.question;
-    // answerButtons.addEventListener('click', selectAnswer);
 // click start quiz, get timer to countdown, can cycle through questions and answers them, 
 //quiz end with clock or quiz ends
 
@@ -57,13 +62,13 @@ function countDown() {
         } else if (secondsLeft === 0) {
             timeEl.textContent = "Time Left: " + secondsLeft;
             clearInterval(timeInterval);
-        //if (secondsLeft === 0 ||  )
-// enter a conditional that ends the quiz either when clock his 0 OR you cycle though all questions.
-// this conditional would involve finding the users index position and compare to length of the array
- // How to end the quiz for EITHER no time left OR no questions left
-//  if (time <= 0 || create a variable to see the which current index of the array of questions you are on === questions.length) {
-//     question ending function here;
-//   }
+            //if (secondsLeft === 0 ||  )
+            // enter a conditional that ends the quiz either when clock his 0 OR you cycle though all questions.
+            // this conditional would involve finding the users index position and compare to length of the array
+            // How to end the quiz for EITHER no time left OR no questions left
+            //  if (time <= 0 || create a variable to see the which current index of the array of questions you are on === questions.length) {
+            //     question ending function here;
+            //   }
         }
     }, 1000);
 };
@@ -73,32 +78,17 @@ function countDown() {
 var quizQuestions = [
     {
         question: "Inside which HTML element do we put the JavaScript?",
-        answers: {
-            1: "<javascript>",
-            2: "<js>",
-            3: "<script>",
-            4: "<scripting>",
-        },
+        answers: ["<javascript>", "<js>", "<script>", "<scripting>"],
         correctAnswer: '3'
     },
     {
         question: "How to write an IF statement in JavaScript?",
-        answers: {
-            1: "if (i == 5)",
-            2: "if i = 5 then",
-            3: "if i = 5;",
-            4: "if i == 5 then",
-        },
+        answers: ["if (i == 5)", "if i = 5 then", "if i = 5;", "if i == 5 then"],
         correctAnswer: '1'
     },
     {
         question: "How does a FOR loop start?",
-        answers: {
-            1: "for i = 1 to 5",
-            2: "for (i = 0; i <= 5; i++)",
-            3: "for (i <= 5; i++)",
-            4: "for (i = 0; i <= 5)",
-        },
+        answers: ["for i = 1 to 5", "for (i = 0; i <= 5; i++)", "for (i <= 5; i++)", "for (i = 0; i <= 5)"],        
         correctAnswer: '2'
     }
 ];
