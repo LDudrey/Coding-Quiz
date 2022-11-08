@@ -11,9 +11,11 @@ var answerElThree = document.getElementById("answers-3");
 var answerButtons = document.getElementById("answer-buttons");
 var answerCorrect = document.getElementById("result");
 var currentQuestionArrayIndex = 0;
-var currentQuestionAnswerArray = "";
 var numberCorrect = 0;
 
+
+// an cycle through questions and answers them, 
+//quiz end with clock or quiz ends
 
 // Creates beginning page
 //https://stackoverflow.com/questions/6242976/javascript-hide-show-element
@@ -23,7 +25,7 @@ function renderCodeQuiz() {
     titleEl.textContent = "Coding Quiz Challenge";
     paraEl.textContent = "Try to answer the following code-related questions with in the time limit. Keep in mind that incorrect answers will penalize your score time by ten seconds!";
     startButton.addEventListener('click', startQuiz);
-}
+};
 
 function startQuiz() {
     document.getElementById("start").style.display = "none";
@@ -31,8 +33,42 @@ function startQuiz() {
     document.getElementById("quiz-container").style.display = "block";
     countDown();
     displayQuestions();
-}
+};
 
+// Timer
+function countDown() {
+    var secondsLeft = 30;
+    var timeInterval = setInterval(function () {
+        if (secondsLeft > 0) {
+            secondsLeft--;
+            timeEl.textContent = "Time Left: " + secondsLeft;
+        } else if (secondsLeft === 0) {
+            timeEl.textContent = "Time Left: " + secondsLeft;
+            document.getElementById("quiz-container").style.display = "none";
+            document.getElementById("start").style.display = "block";
+            document.getElementById("intro").style.display = "block";
+            titleEl.textContent = "Time's Up!";
+            paraEl.textContent = "Try to answer the questions in the time limit.";
+            clearInterval(timeInterval);
+        } else {
+            (currentQuestionArrayIndex === 2);
+            document.getElementById("start").style.display = "block";
+            document.getElementById("quiz-container").style.display = "none";
+            titleEl.textContent = "All done!";
+            paraEl.textContent = "Here is your score." + numberCorrect;
+            //
+            // enter a conditional that ends the quiz either when clock his 0 OR you cycle though all questions.
+            // this conditional would involve finding the users index position and compare to length of the array
+            // How to end the quiz for EITHER no time left OR no questions left
+            //  if (time <= 0 || create a variable to see the which current index of the array of questions you are on === questions.length) {
+            //     question ending function here;
+            //   }
+        }
+    }, 1000);
+};
+
+
+// TA assistance with code
 function displayQuestions() {
     //A variable is needed here to get the current question object from the array of questions
     var currentQuestion = quizQuestions[currentQuestionArrayIndex];
@@ -41,38 +77,36 @@ function displayQuestions() {
     }
     // next we need to add the text content from your quizQuestions array
     questionsEl.textContent = currentQuestion.question;
-    console.log(currentQuestion.question)
-    console.log(currentQuestion.correctAnswer)
+    // console.log(currentQuestion.question)
+    // console.log(currentQuestion.correctAnswer)
     // here we need to make variables that grab the answers buttons in your html
+    // var currentAnswers = quizQuestions[currentQuestionArrayIndex];
+// for (i = 0; i < currentAnswers.length; i++) {
+//     element = currentAnswers.answers[i];
+// };
+
     //var currentAnswerArray
     answerElZero.textContent = currentQuestion.answers[0];
     answerElOne.textContent = currentQuestion.answers[1];
     answerElTwo.textContent = currentQuestion.answers[2];
     answerElThree.textContent = currentQuestion.answers[3];
 };
-// update with current question
 
-
-// var currentAnswers = quizQuestions[currentQuestionArrayIndex];
-// for (i = 0; i < currentAnswers.length; i++) {
-//     element = currentAnswers.answers[i];
-// };
-
-// click start quiz, get timer to countdown, can cycle through questions and answers them, 
-//quiz end with clock or quiz ends
-
+// Asistance in solution from AskBCS and TA
 answerButtons.addEventListener('click', event => {
     event.preventDefault();
     // Compare answer.  Only if correct, do you move onto next question 
-    console.log(event.target.value)
     if (event.target.value == quizQuestions[currentQuestionArrayIndex].correctAnswer) {
         numberCorrect++;
         answerCorrect.textContent = "Correct!";
-        //displayQuestions();
+        localStorage.setItem("score", numberCorrect);
+        startQuiz();
     } else {
         answerCorrect.textContent = "Wrong!";
+        displayQuestions();
     }
-    //displayQuestions();
+    
+    console.log(numberCorrect)
 }
 );
 
@@ -107,7 +141,6 @@ function countDown() {
         }
     }, 1000);
 };
-
 
 // Questions courtesy of https://www.w3schools.com/quiztest/quiztest.asp?qtest=JS
 var quizQuestions = [
