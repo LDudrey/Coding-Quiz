@@ -1,3 +1,4 @@
+var timeEl = document.querySelector(".timer");
 var titleEl = document.querySelector(".title");
 var paraEl = document.querySelector(".para");
 var startButton = document.getElementById("start");
@@ -20,9 +21,9 @@ function startQuiz() {
     document.getElementById("start").style.display = "none";
     document.getElementById("intro").style.display = "none";
     document.getElementById("quiz-container").style.display = "block";
+    countDown();
+    displayQuestions();
 }
-
-
 
 function displayQuestions(question) {
     questionsEl.innerText = question.question;
@@ -39,7 +40,7 @@ function selectAnswer() {
 
 // Timer
 function countDown() {
-    var secondsLeft = 10;
+    var secondsLeft = 11;
     // Sets interval in variable
     var timeInterval = setInterval(function () {
         if (secondsLeft > 0) {
@@ -48,8 +49,6 @@ function countDown() {
         } else if (secondsLeft === 0) {
             timeEl.textContent = "Time Left: " + secondsLeft;
             clearInterval(timeInterval);
-            hide();
-            hideQuiz();
         }
     }, 1000);
 };
