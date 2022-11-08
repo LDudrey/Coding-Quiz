@@ -10,6 +10,7 @@ var answerElTwo = document.getElementById("answers-2");
 var answerElThree = document.getElementById("answers-3");
 var answerButtons = document.getElementById("answer-buttons");
 var currentQuestionArrayIndex = 0;
+var numCorrect = 0;
 
 
 // Creates beginning page
@@ -33,22 +34,30 @@ function startQuiz() {
 function displayQuestions() {
     // A variable is needed here to get the current question object from the array of questions
     var currentQuestion = quizQuestions[currentQuestionArrayIndex]
+    for (i = 0; i < currentQuestionArrayIndex.length; index++) {
+        element = currentQuestionArrayIndex[i];
+        
+    }
     // update with current question
     questionsEl.textContent = currentQuestion.question;
-    //   here we need to make variables that grab the answers buttons in your html
+    // here we need to make variables that grab the answers buttons in your html
     // next we need to add the text content from your quizQUestions array
     answerElZero.textContent = currentQuestion.answers[0];
     answerElOne.textContent = currentQuestion.answers[1];
     answerElTwo.textContent = currentQuestion.answers[2];
     answerElThree.textContent = currentQuestion.answers[3];
     //answerButtons.addEventListener('click', selectAnswer);
+
 }
 
 // click start quiz, get timer to countdown, can cycle through questions and answers them, 
 //quiz end with clock or quiz ends
 
 function selectAnswer() {
-
+    var userAnswer = 0;
+ if(userAnswer === currentQuestionArrayIndex.correctAnswer){
+    numCorrect++;
+ }
 
 }
 
@@ -61,8 +70,16 @@ function countDown() {
             timeEl.textContent = "Time Left: " + secondsLeft;
         } else if (secondsLeft === 0) {
             timeEl.textContent = "Time Left: " + secondsLeft;
+            document.getElementById("quiz-container").style.display = "none";
+            document.getElementById("start").style.display = "block";
+            document.getElementById("intro").style.display = "block";
+            titleEl.textContent = "Time's Up!";
+            paraEl.textContent = "Try to answer the questions in the time limit.";
             clearInterval(timeInterval);
-            //if (secondsLeft === 0 ||  )
+        if (currentQuestionArrayIndex === 2);
+        document.getElementById("start").style.display = "block";
+        document.getElementById("quiz-container").style.display = "none";
+            //
             // enter a conditional that ends the quiz either when clock his 0 OR you cycle though all questions.
             // this conditional would involve finding the users index position and compare to length of the array
             // How to end the quiz for EITHER no time left OR no questions left
@@ -95,7 +112,6 @@ var quizQuestions = [
 
 // The init() function fires when the page is loaded 
 function init() {
-    // When the init function is executed, the code inside renderCodeQuiz function will also execute
     renderCodeQuiz();
 }
 init();
