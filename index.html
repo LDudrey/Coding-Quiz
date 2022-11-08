@@ -23,16 +23,19 @@
                 <p class="para"></p>
                 <button id="start">Start Quiz</button>
             </div>
-            <div id="quiz-container">
-                <div id="questions">Questions</div>
-                <ul id="answer-buttons">
-                    <button id="answers-0"></button>
-                    <button id="answers-1"></button>
-                    <button id="answers-2"></button>
-                    <button id="answers-3"></button>
-                </ul>
+            <!--https://www.w3schools.com/html/html_form_elements.asp-->
+            <!--https://www.w3schools.com/tags/att_input_type.asp-->
+            <!--https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-value-->
+            <form id="quiz-container">
+                <label id="questions">Questions</label>
+                <div id="answer-buttons">
+                    <button type="value" id="answers-0" value="0"></button>
+                    <button type="value" id="answers-1" value="1"></button>
+                    <button type="value" id="answers-2" value="2"></button>
+                    <button type="value" id="answers-3" value="3"></button>
+                </div>
                 <div id="result"></div>
-            </div>
+            </form>
             <div id="score">
                 <button id="submit">submit score and intials</button>
                 get score and input initials

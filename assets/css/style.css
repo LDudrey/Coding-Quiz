@@ -19,24 +19,6 @@ a {
   cursor: pointer;
 }
 
-/* .navbar {
-  display: flex;
-  align-items: flex-start;
-}
-
-.navbar.highscore {
- justify-content: left;
-}
-
-.navbar.timer {
-  justify-content: right;
-}
-
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
 
 .title {
   text-align: center;
@@ -48,7 +30,7 @@ p {
   word-wrap: normal;
 }
 
-#questions {
+form {
   text-align: center;
 }
 

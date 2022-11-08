@@ -39,9 +39,12 @@ function displayQuestions() {
     for (i = 0; i < quizQuestions.length; i++) {
         element = currentQuestion[i];
     }
+    // next we need to add the text content from your quizQuestions array
     questionsEl.textContent = currentQuestion.question;
     console.log(currentQuestion.question)
     console.log(currentQuestion.correctAnswer)
+    // here we need to make variables that grab the answers buttons in your html
+    //var currentAnswerArray
     answerElZero.textContent = currentQuestion.answers[0];
     answerElOne.textContent = currentQuestion.answers[1];
     answerElTwo.textContent = currentQuestion.answers[2];
@@ -49,42 +52,20 @@ function displayQuestions() {
 };
 // update with current question
 
-// here we need to make variables that grab the answers buttons in your html
-// next we need to add the text content from your quizQuestions array
+
 // var currentAnswers = quizQuestions[currentQuestionArrayIndex];
 // for (i = 0; i < currentAnswers.length; i++) {
 //     element = currentAnswers.answers[i];
-// console.log(currentAnswers)
 // };
-// //var currentAnswerArray
-// }
-// answerElZero.textContent = currentQuestion.answers[0];
-// answerElOne.textContent = currentQuestion.answers[1];
-// answerElTwo.textContent = currentQuestion.answers[2];
-// answerElThree.textContent = currentQuestion.answers[3];
-// answerButtons.addEventListener('click', selectAnswer);
-
-// }
 
 // click start quiz, get timer to countdown, can cycle through questions and answers them, 
 //quiz end with clock or quiz ends
 
-
-// answerButtons.addEventListener('click', function (event) {
-//     console.log(event.target)
-//     // Compare answer.  Only if correct, do you move onto next question -   if(answer == QUESTIONS[indexQuestion].answer)
-//     if (currentQuestionAnswerArray == quizQuestions[currentQuestionArrayIndex].answers) {
-//         answerCorrect.textContent = "Correct!"
-//         displayQuestions();
-//     }
-//     else {
-//         answerCorrect.textContent = "Wrong!";
-//     }
-// }
-// );
-answerButtons.addEventListener('click', function (event) {
-    console.log(event.target)
-    if (event == quizQuestions.correctAnswer) {
+answerButtons.addEventListener('click', event => {
+    event.preventDefault();
+    // Compare answer.  Only if correct, do you move onto next question 
+    console.log(event.target.value)
+    if (event.target.value == quizQuestions.correctAnswer) {
         numberCorrect++;
         answerCorrect.textContent = "Correct!";
     } else {
@@ -108,17 +89,19 @@ function countDown() {
             titleEl.textContent = "Time's Up!";
             paraEl.textContent = "Try to answer the questions in the time limit.";
             clearInterval(timeInterval);
-            if (currentQuestionArrayIndex === 2);
-            document.getElementById("start").style.display = "block";
-            document.getElementById("quiz-container").style.display = "none";
-            //
-            // enter a conditional that ends the quiz either when clock his 0 OR you cycle though all questions.
-            // this conditional would involve finding the users index position and compare to length of the array
-            // How to end the quiz for EITHER no time left OR no questions left
-            //  if (time <= 0 || create a variable to see the which current index of the array of questions you are on === questions.length) {
-            //     question ending function here;
-            //   }
-        }
+        } else { (currentQuestionArrayIndex === 2);
+        document.getElementById("start").style.display = "block";
+        document.getElementById("quiz-container").style.display = "none";
+        titleEl.textContent = "All done!";
+        paraEl.textContent = "Here is your score.";
+        //
+        // enter a conditional that ends the quiz either when clock his 0 OR you cycle though all questions.
+        // this conditional would involve finding the users index position and compare to length of the array
+        // How to end the quiz for EITHER no time left OR no questions left
+        //  if (time <= 0 || create a variable to see the which current index of the array of questions you are on === questions.length) {
+        //     question ending function here;
+        //   }
+    }
     }, 1000);
 };
 
