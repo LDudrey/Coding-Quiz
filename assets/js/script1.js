@@ -65,18 +65,20 @@ answerButtons.addEventListener('click', event => {
     event.preventDefault();
     // Compare answer.  Only if correct, do you move onto next question 
     console.log(event.target.value)
-    if (event.target.value == quizQuestions.correctAnswer) {
+    if (event.target.value == quizQuestions[currentQuestionArrayIndex].correctAnswer) {
         numberCorrect++;
         answerCorrect.textContent = "Correct!";
+        //displayQuestions();
     } else {
         answerCorrect.textContent = "Wrong!";
     }
+    //displayQuestions();
 }
 );
 
 // Timer
 function countDown() {
-    var secondsLeft = 11;
+    var secondsLeft = 30;
     var timeInterval = setInterval(function () {
         if (secondsLeft > 0) {
             secondsLeft--;
@@ -89,19 +91,20 @@ function countDown() {
             titleEl.textContent = "Time's Up!";
             paraEl.textContent = "Try to answer the questions in the time limit.";
             clearInterval(timeInterval);
-        } else { (currentQuestionArrayIndex === 2);
-        document.getElementById("start").style.display = "block";
-        document.getElementById("quiz-container").style.display = "none";
-        titleEl.textContent = "All done!";
-        paraEl.textContent = "Here is your score.";
-        //
-        // enter a conditional that ends the quiz either when clock his 0 OR you cycle though all questions.
-        // this conditional would involve finding the users index position and compare to length of the array
-        // How to end the quiz for EITHER no time left OR no questions left
-        //  if (time <= 0 || create a variable to see the which current index of the array of questions you are on === questions.length) {
-        //     question ending function here;
-        //   }
-    }
+        } else {
+            (currentQuestionArrayIndex === 2);
+            document.getElementById("start").style.display = "block";
+            document.getElementById("quiz-container").style.display = "none";
+            titleEl.textContent = "All done!";
+            paraEl.textContent = "Here is your score.";
+            //
+            // enter a conditional that ends the quiz either when clock his 0 OR you cycle though all questions.
+            // this conditional would involve finding the users index position and compare to length of the array
+            // How to end the quiz for EITHER no time left OR no questions left
+            //  if (time <= 0 || create a variable to see the which current index of the array of questions you are on === questions.length) {
+            //     question ending function here;
+            //   }
+        }
     }, 1000);
 };
 
