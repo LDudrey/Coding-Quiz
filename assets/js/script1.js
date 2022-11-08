@@ -42,9 +42,10 @@ function displayQuestions() {
     questionsEl.textContent = currentQuestion.question;
     // here we need to make variables that grab the answers buttons in your html
     // next we need to add the text content from your quizQUestions array
+    var currentAnswers = quizQuestions[currentQuestionArrayIndex]
     for (i = 0; i < currentQuestionArrayIndex.length; index++) {
-        element = quizQuestions.answers[i];
-
+        element = currentAnswers.answers[i];
+        //var currentAnswerArray
     }
     answerElZero.textContent = currentQuestion.answers[0];
     answerElOne.textContent = currentQuestion.answers[1];
@@ -60,12 +61,12 @@ function displayQuestions() {
 // function selectAnswer() {
     //var userAnswer = 0;
     answerButtons.addEventListener('click', function () {
-        if (answerButtons === currentQuestionArrayIndex.correctAnswer) {
+        if (answerButtons == currentQuestionArrayIndex.correctAnswer) {            
             numberCorrect++;
             answerCorrect.textContent = "Correct!";
         } else {
             answerCorrect.textContent = "Wrong!";
-
+            console.log(currentQuestionArrayIndex.correctAnswer);
         }
     });
 
@@ -104,17 +105,17 @@ var quizQuestions = [
     {
         question: "Inside which HTML element do we put the JavaScript?",
         answers: ["<javascript>", "<js>", "<script>", "<scripting>"],
-        correctAnswer: '3'
+        correctAnswer: 2
     },
     {
         question: "How to write an IF statement in JavaScript?",
         answers: ["if (i == 5)", "if i = 5 then", "if i = 5;", "if i == 5 then"],
-        correctAnswer: '1'
+        correctAnswer: 0
     },
     {
         question: "How does a FOR loop start?",
         answers: ["for i = 1 to 5", "for (i = 0; i <= 5; i++)", "for (i <= 5; i++)", "for (i = 0; i <= 5)"],
-        correctAnswer: '2'
+        correctAnswer: 1
     }
 ];
 
