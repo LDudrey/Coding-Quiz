@@ -83,8 +83,8 @@ function displayQuestions() {
 // }
 // );
 answerButtons.addEventListener('click', function (event) {
-    console.log(event)
-    if (event === quizQuestions.correctAnswer) {
+    console.log(event.target)
+    if (event == quizQuestions.correctAnswer) {
         numberCorrect++;
         answerCorrect.textContent = "Correct!";
     } else {
