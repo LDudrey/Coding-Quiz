@@ -9,15 +9,16 @@ var answerElOne = document.getElementById("answers-1");
 var answerElTwo = document.getElementById("answers-2");
 var answerElThree = document.getElementById("answers-3");
 var answerButtons = document.getElementById("answer-buttons");
+var answerCorrect = document.getElementById("result");
 var currentQuestionArrayIndex = 0;
-var numCorrect = 0;
+var numberCorrect = 0;
 
 
 // Creates beginning page
 //https://stackoverflow.com/questions/6242976/javascript-hide-show-element
 function renderCodeQuiz() {
     document.getElementById("quiz-container").style.display = "none";
-    document.getElementById("results").style.display = "none";
+    document.getElementById("score").style.display = "none";
     titleEl.textContent = "Coding Quiz Challenge";
     paraEl.textContent = "Try to answer the following code-related questions with in the time limit. Keep in mind that incorrect answers will penalize your score time by ten seconds!";
     startButton.addEventListener('click', startQuiz);
@@ -36,12 +37,15 @@ function displayQuestions() {
     var currentQuestion = quizQuestions[currentQuestionArrayIndex]
     for (i = 0; i < currentQuestionArrayIndex.length; index++) {
         element = currentQuestionArrayIndex[i];
-        
     }
     // update with current question
     questionsEl.textContent = currentQuestion.question;
     // here we need to make variables that grab the answers buttons in your html
     // next we need to add the text content from your quizQUestions array
+    for (i = 0; i < currentQuestionArrayIndex.length; index++) {
+        element = quizQuestions.answers[i];
+
+    }
     answerElZero.textContent = currentQuestion.answers[0];
     answerElOne.textContent = currentQuestion.answers[1];
     answerElTwo.textContent = currentQuestion.answers[2];
@@ -53,13 +57,17 @@ function displayQuestions() {
 // click start quiz, get timer to countdown, can cycle through questions and answers them, 
 //quiz end with clock or quiz ends
 
-function selectAnswer() {
-    var userAnswer = 0;
- if(userAnswer === currentQuestionArrayIndex.correctAnswer){
-    numCorrect++;
- }
+// function selectAnswer() {
+    //var userAnswer = 0;
+    answerButtons.addEventListener('click', function () {
+        if (answerButtons === currentQuestionArrayIndex.correctAnswer) {
+            numberCorrect++;
+            answerCorrect.textContent = "Correct!";
+        } else {
+            answerCorrect.textContent = "Wrong!";
 
-}
+        }
+    });
 
 // Timer
 function countDown() {
@@ -76,9 +84,9 @@ function countDown() {
             titleEl.textContent = "Time's Up!";
             paraEl.textContent = "Try to answer the questions in the time limit.";
             clearInterval(timeInterval);
-        if (currentQuestionArrayIndex === 2);
-        document.getElementById("start").style.display = "block";
-        document.getElementById("quiz-container").style.display = "none";
+            if (currentQuestionArrayIndex === 2);
+            document.getElementById("start").style.display = "block";
+            document.getElementById("quiz-container").style.display = "none";
             //
             // enter a conditional that ends the quiz either when clock his 0 OR you cycle though all questions.
             // this conditional would involve finding the users index position and compare to length of the array
@@ -105,7 +113,7 @@ var quizQuestions = [
     },
     {
         question: "How does a FOR loop start?",
-        answers: ["for i = 1 to 5", "for (i = 0; i <= 5; i++)", "for (i <= 5; i++)", "for (i = 0; i <= 5)"],        
+        answers: ["for i = 1 to 5", "for (i = 0; i <= 5; i++)", "for (i <= 5; i++)", "for (i = 0; i <= 5)"],
         correctAnswer: '2'
     }
 ];
