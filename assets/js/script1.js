@@ -70,33 +70,41 @@ function countDown() {
 
 // TA assistance with code
 function displayQuestions() {
-    //A variable is needed here to get the current question object from the array of questions
     var currentQuestion = quizQuestions[currentQuestionArrayIndex];
-    for (i = 0; i < quizQuestions.length; i++) { 
-    questionsEl.textContent = currentQuestion.question;
-    // console.log(currentQuestion.question)
-    answerElZero.textContent = currentQuestion.answers[0];
-    answerElOne.textContent = currentQuestion.answers[1];
-    answerElTwo.textContent = currentQuestion.answers[2];
-    answerElThree.textContent = currentQuestion.answers[3];
-}
+    for (i = 0; i < quizQuestions.length; i++) {
+        questionsEl.textContent = currentQuestion.question;
+        answerElZero.textContent = currentQuestion.answers[0];
+        answerElOne.textContent = currentQuestion.answers[1];
+        answerElTwo.textContent = currentQuestion.answers[2];
+        answerElThree.textContent = currentQuestion.answers[3];
+    }
+};
+
+function endQuiz() {
+    if (currentQuestionArrayIndex >= 3) {
+        document.getElementById("start").style.display = "block";
+        document.getElementById("quiz-container").style.display = "none";
+        titleEl.textContent = "All done!";
+        paraEl.textContent = "Here is your score." + numberCorrect;
+    } else {
+        displayQuestions();
+    }
 };
 
 // Asistance in solution from AskBCS and TA
 // Found syntax for advancing questions: https://stackoverflow.com/questions/43502831/displaying-one-quiz-item-at-a-time
 answerButtons.addEventListener('click', event => {
     event.preventDefault();
-    // Compare answer.  Only if correct, do you move onto next question 
     if (event.target.value == quizQuestions[currentQuestionArrayIndex].correctAnswer) {
         numberCorrect++;
         answerCorrect.textContent = "Correct!";
         localStorage.setItem("score", numberCorrect);
         ++currentQuestionArrayIndex;
-        displayQuestions();
+        endQuiz();
     } else {
         answerCorrect.textContent = "Wrong!";
         ++currentQuestionArrayIndex;
-        displayQuestions();
+        endQuiz();
     }
 }
 );
@@ -116,13 +124,8 @@ function countDown() {
             titleEl.textContent = "Time's Up!";
             paraEl.textContent = "Try to answer the questions in the time limit.";
             clearInterval(timeInterval);
-        } else {
-            (currentQuestionArrayIndex > 2);
-            document.getElementById("start").style.display = "block";
-            document.getElementById("quiz-container").style.display = "none";
-            titleEl.textContent = "All done!";
-            paraEl.textContent = "Here is your score.";
-            //
+            endQuiz();
+
             // enter a conditional that ends the quiz either when clock his 0 OR you cycle though all questions.
             // this conditional would involve finding the users index position and compare to length of the array
             // How to end the quiz for EITHER no time left OR no questions left
