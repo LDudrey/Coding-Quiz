@@ -10,12 +10,13 @@ var answerElTwo = document.getElementById("answers-2");
 var answerElThree = document.getElementById("answers-3");
 var answerButtons = document.getElementById("answer-buttons");
 var answerCorrect = document.getElementById("result");
+var submitScore = document.getElementById("submit");
+var userInitals = document.getElementById('user-initals');
 var currentQuestionArrayIndex = 0;
-var numberCorrect = 0;
-
-
-// an cycle through questions and answers them, 
-//quiz end with clock or quiz ends
+var secondsLeft = 30;
+var savedInitals = {
+    userInitals: userInitals.value.trim(),
+};
 
 // Creates beginning page
 //https://stackoverflow.com/questions/6242976/javascript-hide-show-element
@@ -37,32 +38,22 @@ function startQuiz() {
 
 // Timer
 function countDown() {
-    var secondsLeft = 30;
-    var timeInterval = setInterval(function () {
+    var timeInterval = setInterval( function () {
         if (secondsLeft > 0) {
             secondsLeft--;
             timeEl.textContent = "Time Left: " + secondsLeft;
-        } else if (secondsLeft === 0) {
+        } 
+        if (secondsLeft === 0 || currentQuestionArrayIndex == 3) {
             timeEl.textContent = "Time Left: " + secondsLeft;
             document.getElementById("quiz-container").style.display = "none";
-            document.getElementById("start").style.display = "block";
+            document.getElementById("start").style.display = "none";
             document.getElementById("intro").style.display = "block";
-            titleEl.textContent = "Time's Up!";
-            paraEl.textContent = "Try to answer the questions in the time limit.";
-            clearInterval(timeInterval);
-        } else {
-            (currentQuestionArrayIndex === 3);
-            document.getElementById("start").style.display = "block";
-            document.getElementById("quiz-container").style.display = "none";
+            document.getElementById("score").style.display = "block";
+            document.getElementById("submit").style.display = "block";
             titleEl.textContent = "All done!";
-            paraEl.textContent = "Here is your score." + numberCorrect;
-            //
-            // enter a conditional that ends the quiz either when clock his 0 OR you cycle though all questions.
-            // this conditional would involve finding the users index position and compare to length of the array
-            // How to end the quiz for EITHER no time left OR no questions left
-            //  if (time <= 0 || create a variable to see the which current index of the array of questions you are on === questions.length) {
-            //     question ending function here;
-            //   }
+            paraEl.textContent = "Your final score is " + secondsLeft +"." + " Enter your initials";
+            localStorage.setItem("savedInitals", JSON.stringify(savedInitals));
+            clearInterval(timeInterval);
         }
     }, 1000);
 };
@@ -82,59 +73,31 @@ function displayQuestions() {
 
 function endQuiz() {
     if (currentQuestionArrayIndex >= 3) {
-        document.getElementById("start").style.display = "block";
+        document.getElementById("start").style.display = "none";
         document.getElementById("quiz-container").style.display = "none";
-        titleEl.textContent = "All done!";
-        paraEl.textContent = "Here is your score." + numberCorrect;
     } else {
         displayQuestions();
     }
 };
 
-// Asistance in solution from AskBCS and TA
+// Assistance in solution from AskBCS and TA
 // Found syntax for advancing questions: https://stackoverflow.com/questions/43502831/displaying-one-quiz-item-at-a-time
 answerButtons.addEventListener('click', event => {
     event.preventDefault();
     if (event.target.value == quizQuestions[currentQuestionArrayIndex].correctAnswer) {
-        numberCorrect++;
         answerCorrect.textContent = "Correct!";
-        localStorage.setItem("score", numberCorrect);
+        localStorage.setItem("score", secondsLeft);
         ++currentQuestionArrayIndex;
         endQuiz();
     } else {
         answerCorrect.textContent = "Wrong!";
+        secondsLeft -= 10;
+        localStorage.setItem("score", secondsLeft);
         ++currentQuestionArrayIndex;
         endQuiz();
     }
 }
 );
-
-// Timer
-function countDown() {
-    var secondsLeft = 30;
-    var timeInterval = setInterval(function () {
-        if (secondsLeft > 0) {
-            secondsLeft--;
-            timeEl.textContent = "Time Left: " + secondsLeft;
-        } else if (secondsLeft === 0) {
-            timeEl.textContent = "Time Left: " + secondsLeft;
-            document.getElementById("quiz-container").style.display = "none";
-            document.getElementById("start").style.display = "block";
-            document.getElementById("intro").style.display = "block";
-            titleEl.textContent = "Time's Up!";
-            paraEl.textContent = "Try to answer the questions in the time limit.";
-            clearInterval(timeInterval);
-            endQuiz();
-
-            // enter a conditional that ends the quiz either when clock his 0 OR you cycle though all questions.
-            // this conditional would involve finding the users index position and compare to length of the array
-            // How to end the quiz for EITHER no time left OR no questions left
-            //  if (time <= 0 || create a variable to see the which current index of the array of questions you are on === questions.length) {
-            //     question ending function here;
-            //   }
-        }
-    }, 1000);
-};
 
 // Questions courtesy of https://www.w3schools.com/quiztest/quiztest.asp?qtest=JS
 var quizQuestions = [
